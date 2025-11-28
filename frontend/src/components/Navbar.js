@@ -1,85 +1,55 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../Reducer/authSlice';
+
 const Nav = ({ CartCount }) => {
+  const dispatch = useDispatch();
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">E-shopper</Link>
-        <button 
-          className="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarSupportedContent" 
-          aria-controls="navbarSupportedContent" 
-          aria-expanded="false" 
-          aria-label="Toggle navigation"
-        >
+        <Link className="navbar-brand fw-bold text-primary" to="/">Softcart Tech Solutions</Link>
+        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item dropdown">
-              <a 
-                className="nav-link dropdown-toggle" 
-                href="#" 
-                id="navbarDropdown" 
-                role="button" 
-                data-bs-toggle="dropdown" 
-                aria-expanded="false"
-              >
-                Categories
-              </a>
-              <ul className="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                <li><a className="dropdown-item" href="/#products">Cameras</a></li>
-                <li><a className="dropdown-item" href="/#products">Apple Gadgets</a></li>
-                <li><hr className="dropdown-divider" /></li>
-                <li><a className="dropdown-item" href="/#products">Drones</a></li>
-              </ul>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto align-items-center">
+            <li className="nav-item">
+              <Link className="nav-link active" aria-current="page" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/cart" tabIndex="-1">
-                Cart <i className="bi bi-cart-plus-fill"></i> 
-                <span className="cart-badge badge bg-success">{CartCount}</span> 
+              <Link className="nav-link position-relative" to="/cart">
+                <i className="bi bi-cart-fill fs-5"></i>
+                {CartCount > 0 && (
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {CartCount}
+                  </span>
+                )}
               </Link>
             </li>
+            {userInfo ? (
+              <li className="nav-item dropdown ms-3">
+                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {userInfo.name}
+                </a>
+                <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
+                  <li><hr className="dropdown-divider" /></li>
+                  <li><button className="dropdown-item" onClick={logoutHandler}>Logout</button></li>
+                </ul>
+              </li>
+            ) : (
+              <li className="nav-item ms-3">
+                <Link className="btn btn-outline-primary rounded-pill px-4" to="/login">Login</Link>
+              </li>
+            )}
           </ul>
-          <ul className="navbar-nav mb-2 mb-lg-0 mx-lg-2 order-sm-last">
-            <li className="nav-item dropdown">
-              <a 
-                className="nav-link dropdown-toggle" 
-                href="#" 
-                id="myaccount" 
-                role="button" 
-                data-bs-toggle="dropdown" 
-                aria-expanded="false"
-              >
-                My Account
-              </a>
-              <ul className="dropdown-menu bg-dark text-light" aria-labelledby="navbarDropdown">
-                <li><a className="dropdown-item" href="/#" data-bs-toggle="modal" data-bs-target="#exampleModal">My Orders</a></li>
-                <li><a className="dropdown-item" href="/#" data-bs-toggle="modal" data-bs-target="#exampleModal">Profile</a></li>
-                <li><hr className="dropdown-divider" /></li>
-                <li><a className="dropdown-item" href="/#">Logout</a></li>
-              </ul>
-            </li>
-          </ul>
-          <form className="d-flex search-form">
-            <input 
-              className="form-control" 
-              type="search" 
-              placeholder="Search" 
-              aria-label="Search" 
-            />
-            <button 
-              className="btn btn-success" 
-              type="submit" 
-              data-bs-toggle="tooltip" 
-              data-bs-placement="left" 
-              title="Search for all products"
-            >
-              <i className="bi bi-search"></i>
-            </button>
-          </form>
         </div>
       </div>
     </nav>

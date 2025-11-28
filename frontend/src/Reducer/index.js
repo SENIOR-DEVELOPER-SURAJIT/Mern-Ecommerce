@@ -1,44 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+// Async thunk to fetch products
+export const fetchProducts = createAsyncThunk(
+  'products/fetchProducts',
+  async () => {
+    const response = await axios.get('http://localhost:5000/api/products');
+    return response.data;
+  }
+);
 
 // Initial state for products
-const initialProductsState = [
-  {
-    id: 1,
-    name: 'Sony WX-5',
-    price: 100.75,
-    category: 'Headphones',
-    rating: 3,
-    color: 'red',
-    size: '',
-    image: 'product-1-square',
-  },
-  {
-    id: 2,
-    name: 'Apple Watch 2',
-    price: 500.75,
-    category: 'Smartwatch',
-    rating: 4,
-    color: 'black',
-    size: '',
-    image: 'product-2-square',
-  },
-  {
-    id: 3,
-    name: 'Apple iPhone 11',
-    price: 799.75,
-    category: 'Mobile',
-    rating: 4,
-    color: 'red',
-    size: '',
-    details: {
-      product: '',
-      warranty: '',
-      merchant: '',
-    },
-    image: 'product-3-square',
-    images: ['product-3-square', 'product-3-square', 'product-3-square'],
-  },
-];
+const initialProductsState = [];
 
 // Initial state for cart
 const initialCartState = {
@@ -58,6 +31,11 @@ const productSlice = createSlice({
   name: 'products',
   initialState: initialProductsState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(fetchProducts.fulfilled, (state, action) => {
+      return action.payload;
+    });
+  },
 });
 
 // Cart slice
