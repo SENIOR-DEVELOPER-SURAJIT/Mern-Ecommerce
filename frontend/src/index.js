@@ -14,6 +14,7 @@ import About from './pages/About';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import Mission from './pages/Mission';
+import Profile from './pages/Profile';
 import {
   BrowserRouter,
   Routes,
@@ -39,6 +40,7 @@ root.render(
             <Route path='terms' element={<Terms />} />
             <Route path='privacy' element={<Privacy />} />
             <Route path='mission' element={<Mission />} />
+            <Route path='profile' element={<Profile />} />
           </Route>
         </Routes>
       </BrowserRouter>

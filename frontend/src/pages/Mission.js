@@ -47,9 +47,33 @@ const Mission = () => {
 
                     <div className="p-5 bg-light">
                         <h3 className="fw-bold text-center mb-4">Our Story</h3>
-                        <p className="text-secondary text-center mx-auto" style={{ maxWidth: '800px' }}>
+                        <p className="text-secondary text-center mx-auto mb-5" style={{ maxWidth: '800px' }}>
                             Founded in 2024, Softcart Tech Solutions began with a simple idea: to make technology accessible to everyone. We started as a small team of passionate tech enthusiasts and have grown into a leading e-commerce platform. We believe in the power of technology to improve lives and are committed to bringing the best products to our customers.
                         </p>
+
+                        <div className="row g-4 justify-content-center mt-4">
+                            <div className="col-md-4">
+                                <div className="card border-0 shadow-sm h-100 p-4 text-center">
+                                    <i className="bi bi-geo-alt text-primary fs-1 mb-3"></i>
+                                    <h5 className="fw-bold">Visit Us</h5>
+                                    <p className="text-muted">Kalyani, 741235</p>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="card border-0 shadow-sm h-100 p-4 text-center">
+                                    <i className="bi bi-envelope text-primary fs-1 mb-3"></i>
+                                    <h5 className="fw-bold">Email Us</h5>
+                                    <p className="text-muted">surajit123mondal@gmail.com</p>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="card border-0 shadow-sm h-100 p-4 text-center">
+                                    <i className="bi bi-telephone text-primary fs-1 mb-3"></i>
+                                    <h5 className="fw-bold">Call Us</h5>
+                                    <p className="text-muted">+91 8777786662</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </motion.div>
             </div>

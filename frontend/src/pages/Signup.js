@@ -240,22 +240,35 @@ const Signup = () => {
             {/* Right Side - Image */}
             <div style={{
                 flex: 1,
-                background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                backgroundImage: `url(${require('../assets/signup_bg_custom.jpg')})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: '40px'
+                padding: '40px',
+                position: 'relative'
             }}>
+                <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    backgroundColor: 'rgba(0, 0, 0, 0.4)', // Overlay for readability
+                    zIndex: 1
+                }}></div>
+
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6 }}
-                    style={{ textAlign: 'center', color: 'white' }}
+                    style={{ textAlign: 'center', color: 'white', zIndex: 2, position: 'relative' }}
                 >
-                    <h1 style={{ fontSize: '3rem', fontWeight: 700, marginBottom: '20px' }}>
+                    <h1 style={{ fontSize: '3.5rem', fontWeight: 700, marginBottom: '20px', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
                         Join Softcart!
                     </h1>
-                    <p style={{ fontSize: '1.2rem', opacity: 0.9 }}>
+                    <p style={{ fontSize: '1.4rem', opacity: 1, textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>
                         Create an account and start your shopping journey with us
                     </p>
                 </motion.div>

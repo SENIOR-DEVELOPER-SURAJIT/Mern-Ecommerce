@@ -2,51 +2,57 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: 'var(--secondary-color)', color: 'white', padding: '60px 0 20px' }}>
+    <footer style={{
+      background: 'linear-gradient(to right, #1a1a1a, #2c3e50)',
+      color: '#ecf0f1',
+      padding: '70px 0 30px',
+      borderTop: '5px solid var(--primary-color)',
+      fontFamily: "'Poppins', sans-serif"
+    }}>
       <div className="container">
-        <div className="row g-4">
+        <div className="row g-5">
           {/* Menu Column */}
-          <div className="col-md-4">
-            <h5 className="fw-bold mb-4">Menu</h5>
+          <div className="col-md-3">
+            <h5 className="fw-bold mb-4" style={{ color: 'var(--primary-color)', letterSpacing: '1px' }}>MENU</h5>
             <ul className="list-unstyled">
-              <li className="mb-2">
-                <Link to="/" style={{ color: '#ccc', textDecoration: 'none' }}>Home</Link>
+              <li className="mb-3">
+                <Link to="/" className="footer-link" style={{ color: '#bdc3c7', textDecoration: 'none', transition: '0.3s' }}>Home</Link>
               </li>
-              <li className="mb-2">
-                <Link to="/terms" style={{ color: '#ccc', textDecoration: 'none' }}>About</Link>
+              <li className="mb-3">
+                <Link to="/about" className="footer-link" style={{ color: '#bdc3c7', textDecoration: 'none', transition: '0.3s' }}>About</Link>
               </li>
-              <li className="mb-2">
-                <Link to="/privacy" style={{ color: '#ccc', textDecoration: 'none' }}>Products</Link>
+              <li className="mb-3">
+                <Link to="/" className="footer-link" style={{ color: '#bdc3c7', textDecoration: 'none', transition: '0.3s' }}>Products</Link>
               </li>
-              <li className="mb-2">
-                <Link to="/mission" style={{ color: '#ccc', textDecoration: 'none' }}>Contact</Link>
+              <li className="mb-3">
+                <Link to="/mission" className="footer-link" style={{ color: '#bdc3c7', textDecoration: 'none', transition: '0.3s' }}>Contact</Link>
               </li>
             </ul>
           </div>
 
           {/* Account Column */}
-          <div className="col-md-4">
-            <h5 className="fw-bold mb-4">Account</h5>
+          <div className="col-md-3">
+            <h5 className="fw-bold mb-4" style={{ color: 'var(--primary-color)', letterSpacing: '1px' }}>ACCOUNT</h5>
             <ul className="list-unstyled">
-              <li className="mb-2">
-                <Link to="/login" style={{ color: '#ccc', textDecoration: 'none' }}>Login</Link>
+              <li className="mb-3">
+                <Link to="/login" className="footer-link" style={{ color: '#bdc3c7', textDecoration: 'none', transition: '0.3s' }}>Login</Link>
               </li>
-              <li className="mb-2">
-                <Link to="/cart" style={{ color: '#ccc', textDecoration: 'none' }}>Cart</Link>
+              <li className="mb-3">
+                <Link to="/cart" className="footer-link" style={{ color: '#bdc3c7', textDecoration: 'none', transition: '0.3s' }}>Cart</Link>
               </li>
-              <li className="mb-2">
-                <Link to="/terms" style={{ color: '#ccc', textDecoration: 'none' }}>Terms</Link>
+              <li className="mb-3">
+                <Link to="/terms" className="footer-link" style={{ color: '#bdc3c7', textDecoration: 'none', transition: '0.3s' }}>Terms</Link>
               </li>
-              <li className="mb-2">
-                <Link to="/privacy" style={{ color: '#ccc', textDecoration: 'none' }}>Privacy</Link>
+              <li className="mb-3">
+                <Link to="/privacy" className="footer-link" style={{ color: '#bdc3c7', textDecoration: 'none', transition: '0.3s' }}>Privacy</Link>
               </li>
             </ul>
           </div>
 
           {/* Newsletter Column */}
-          <div className="col-md-4">
-            <h5 className="fw-bold mb-4">Newsletter</h5>
-            <p style={{ color: '#ccc', marginBottom: '20px' }}>
+          <div className="col-md-3">
+            <h5 className="fw-bold mb-4" style={{ color: 'var(--primary-color)', letterSpacing: '1px' }}>NEWSLETTER</h5>
+            <p style={{ color: '#bdc3c7', marginBottom: '20px' }}>
               Subscribe to get special offers and updates
             </p>
             <div className="d-flex mb-3">
@@ -54,7 +60,13 @@ const Footer = () => {
                 type="email"
                 className="form-control"
                 placeholder="Enter your email"
-                style={{ borderRadius: '4px 0 0 4px' }}
+                style={{
+                  borderRadius: '4px 0 0 4px',
+                  border: 'none',
+                  padding: '10px 15px',
+                  backgroundColor: 'rgba(255,255,255,0.1)',
+                  color: 'white'
+                }}
               />
               <button
                 className="btn"
@@ -63,74 +75,67 @@ const Footer = () => {
                   color: 'white',
                   border: 'none',
                   borderRadius: '0 4px 4px 0',
-                  padding: '0 20px'
+                  padding: '0 20px',
+                  fontWeight: '600'
                 }}
               >
                 Subscribe
               </button>
             </div>
+          </div>
+
+          {/* Contact Column */}
+          <div className="col-md-3">
+            <h5 className="fw-bold mb-4" style={{ color: 'var(--primary-color)', letterSpacing: '1px' }}>CONTACT US</h5>
+            <ul className="list-unstyled text-muted">
+              <li className="mb-3 d-flex align-items-start">
+                <i className="bi bi-geo-alt me-3 fs-5" style={{ color: 'var(--primary-color)' }}></i>
+                <span style={{ color: '#bdc3c7' }}>Kalyani, 741235</span>
+              </li>
+              <li className="mb-3 d-flex align-items-center">
+                <i className="bi bi-envelope me-3 fs-5" style={{ color: 'var(--primary-color)' }}></i>
+                <span style={{ color: '#bdc3c7' }}>surajit123mondal@gmail.com</span>
+              </li>
+              <li className="mb-3 d-flex align-items-center">
+                <i className="bi bi-telephone me-3 fs-5" style={{ color: 'var(--primary-color)' }}></i>
+                <span style={{ color: '#bdc3c7' }}>+91 8777786662</span>
+              </li>
+            </ul>
 
             {/* Social Icons */}
-            <div className="d-flex gap-2 mt-4">
-              <a href="#" style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                backgroundColor: '#444',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white',
-                textDecoration: 'none'
-              }}>
-                <i className="bi bi-facebook"></i>
-              </a>
-              <a href="#" style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                backgroundColor: '#444',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white',
-                textDecoration: 'none'
-              }}>
-                <i className="bi bi-twitter"></i>
-              </a>
-              <a href="#" style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                backgroundColor: '#444',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white',
-                textDecoration: 'none'
-              }}>
-                <i className="bi bi-instagram"></i>
-              </a>
-              <a href="#" style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                backgroundColor: '#444',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white',
-                textDecoration: 'none'
-              }}>
-                <i className="bi bi-linkedin"></i>
-              </a>
+            <div className="d-flex gap-3 mt-4">
+              {['facebook', 'twitter', 'instagram', 'linkedin'].map((icon) => (
+                <a key={icon} href="#" style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  backgroundColor: 'rgba(255,255,255,0.1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  textDecoration: 'none',
+                  transition: '0.3s'
+                }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.backgroundColor = 'var(--primary-color)';
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  <i className={`bi bi-${icon}`}></i>
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="text-center mt-5 pt-4" style={{ borderTop: '1px solid #444' }}>
-          <p style={{ color: '#999', margin: 0 }}>
+        <div className="text-center mt-5 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+          <p style={{ color: '#95a5a6', margin: 0, fontSize: '0.9rem' }}>
             © 2024 Softcart Tech Solutions. All rights reserved.
           </p>
         </div>

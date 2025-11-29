@@ -14,9 +14,12 @@ const Nav = ({ CartCount }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom" style={{ borderColor: 'var(--border-color)' }}>
       <div className="container">
-        <Link className="navbar-brand d-flex align-items-center" to="/" style={{ fontWeight: 700, fontSize: '1.5rem', color: 'var(--text-dark)' }}>
-          <span style={{ color: 'var(--primary-color)' }}>Softcart</span>
-          <span className="ms-1">Tech</span>
+        <Link className="navbar-brand d-flex align-items-center" to="/">
+          <img src={require('../assets/logo.png')} alt="Softcart Logo" style={{ height: '70px', marginRight: '10px' }} />
+          <span style={{ fontWeight: 700, fontSize: '1.5rem', color: 'var(--text-dark)' }}>
+            <span style={{ color: 'var(--primary-color)' }}>Softcart</span>
+            <span className="ms-1">Tech</span>
+          </span>
         </Link>
 
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
