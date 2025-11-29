@@ -8,6 +8,12 @@ import Home from './pages/Home';
 import CartPages from './pages/cartPages';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+import About from './pages/About';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
+import Mission from './pages/Mission';
 import {
   BrowserRouter,
   Routes,
@@ -23,10 +29,16 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route index element={<Home />} /> {/* Correctly setting Home as the default page */}
-            <Route path='cart' element={<CartPages />} /> {/* Correctly setting Home as the default page */}
+            <Route index element={<Home />} />
+            <Route path='cart' element={<CartPages />} />
             <Route path='login' element={<Login />} />
             <Route path='signup' element={<Signup />} />
+            <Route path='forgot-password' element={<ForgotPassword />} />
+            <Route path='reset-password/:token' element={<ResetPassword />} />
+            <Route path='about' element={<About />} />
+            <Route path='terms' element={<Terms />} />
+            <Route path='privacy' element={<Privacy />} />
+            <Route path='mission' element={<Mission />} />
           </Route>
         </Routes>
       </BrowserRouter>

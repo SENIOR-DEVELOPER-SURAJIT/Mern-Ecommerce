@@ -4,11 +4,16 @@ import { motion } from 'framer-motion';
 const Productlist = ({ products = [], showToast, handleAddToCart }) => {
   const goToProductDetails = (id) => {
     console.log(`Navigating to product details for product ID: ${id}`);
-    // Implement navigation logic here (e.g., using React Router)
   };
 
   const handleAddToCartClick = (product) => {
     handleAddToCart(product);
+  };
+
+  const handleBuyNow = (product) => {
+    handleAddToCart(product);
+    // Navigate to cart or checkout
+    window.location.href = '/cart';
   };
 
   return (
@@ -18,39 +23,77 @@ const Productlist = ({ products = [], showToast, handleAddToCart }) => {
           products.map((product) => (
             <div className="col-xl-3 col-lg-4 col-md-6" key={product.id}>
               <motion.div
-                whileHover={{ y: -10 }}
-                className="card product-item h-100 border-0 shadow-sm overflow-hidden"
-                style={{ borderRadius: '15px' }}
+                whileHover={{ y: -8, boxShadow: 'var(--shadow-md)' }}
+                className="card h-100 border"
+                style={{
+                  borderRadius: 'var(--radius-sm)',
+                  borderColor: 'var(--border-color)',
+                  transition: 'all 0.3s ease'
+                }}
               >
-                <div className="position-relative">
-                  <span className="badge bg-danger position-absolute top-0 start-0 m-3">Sale</span>
-                  <i className="bi bi-heart position-absolute top-0 end-0 m-3 fs-5 text-muted" style={{ cursor: 'pointer' }}></i>
+                <div className="position-relative" style={{ overflow: 'hidden' }}>
                   <img
                     src={`images/${product.image}.jpg`}
                     onClick={() => goToProductDetails(product.id)}
-                    className="card-img-top p-4"
+                    className="card-img-top p-3"
                     alt={product.name}
-                    style={{ cursor: 'pointer', objectFit: 'contain', height: '250px' }}
+                    style={{
+                      cursor: 'pointer',
+                      objectFit: 'contain',
+                      height: '220px',
+                      transition: 'transform 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+                    onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
                   />
                 </div>
-                <div className="card-body d-flex flex-column">
-                  <h6 className="card-subtitle mb-2 text-muted fw-light text-uppercase small">{product.category}</h6>
-                  <h5 className="card-title fw-bold text-dark mb-3">{product.name}</h5>
+
+                <div className="card-body d-flex flex-column text-center px-3 pb-3">
+                  <h6 className="card-title fw-600 mb-2" style={{
+                    color: 'var(--text-dark)',
+                    fontSize: '0.95rem',
+                    minHeight: '40px'
+                  }}>
+                    {product.name}
+                  </h6>
+
+                  <h5 className="fw-bold mb-3" style={{ color: 'var(--primary-color)' }}>
+                    ${product.price.toFixed(2)}
+                  </h5>
+
                   <div className="mt-auto">
-                    <div className="d-flex justify-content-between align-items-center mb-3">
-                      <span className="h5 mb-0 fw-bold text-primary">${product.price.toFixed(2)}</span>
-                      <div className="text-warning small">
-                        {Array(product.rating).fill().map((_, i) => (
-                          <i className="bi bi-star-fill" key={i}></i>
-                        ))}
-                      </div>
-                    </div>
                     <motion.button
                       whileTap={{ scale: 0.95 }}
-                      className="btn btn-primary w-100 rounded-pill"
+                      className="btn w-100 mb-2"
                       onClick={() => handleAddToCartClick(product)}
+                      style={{
+                        backgroundColor: 'var(--primary-color)',
+                        color: 'white',
+                        border: 'none',
+                        padding: '10px',
+                        fontWeight: 500,
+                        fontSize: '0.9rem',
+                        borderRadius: 'var(--radius-sm)'
+                      }}
                     >
                       Add To Cart
+                    </motion.button>
+
+                    <motion.button
+                      whileTap={{ scale: 0.95 }}
+                      className="btn w-100"
+                      onClick={() => handleBuyNow(product)}
+                      style={{
+                        backgroundColor: 'white',
+                        color: 'var(--text-dark)',
+                        border: '1px solid var(--border-color)',
+                        padding: '10px',
+                        fontWeight: 500,
+                        fontSize: '0.9rem',
+                        borderRadius: 'var(--radius-sm)'
+                      }}
+                    >
+                      Buy Now
                     </motion.button>
                   </div>
                 </div>

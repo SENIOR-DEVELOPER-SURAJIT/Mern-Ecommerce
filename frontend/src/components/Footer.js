@@ -1,56 +1,141 @@
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
   return (
-    <div className="footer mt-auto bg-dark text-light">
-      <div className="container py-3">
-        <div className="row d-flex footer-items">
-          <div className="col-lg-4">
-            <h5>Categories</h5>
-            <ul>
-              <li><a href="#">Watches</a></li>
-              <li><a href="#">Mobiles</a></li>
-              <li><a href="#">Tablets</a></li>
-              <li><a href="#">Audio</a></li>
-              <li><a href="#">Drones</a></li>
+    <footer style={{ backgroundColor: 'var(--secondary-color)', color: 'white', padding: '60px 0 20px' }}>
+      <div className="container">
+        <div className="row g-4">
+          {/* Menu Column */}
+          <div className="col-md-4">
+            <h5 className="fw-bold mb-4">Menu</h5>
+            <ul className="list-unstyled">
+              <li className="mb-2">
+                <Link to="/" style={{ color: '#ccc', textDecoration: 'none' }}>Home</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/terms" style={{ color: '#ccc', textDecoration: 'none' }}>About</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/privacy" style={{ color: '#ccc', textDecoration: 'none' }}>Products</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/mission" style={{ color: '#ccc', textDecoration: 'none' }}>Contact</Link>
+              </li>
             </ul>
           </div>
-          <div className="col-lg-4">
-            <h5>Useful Links</h5>
-            <ul>
-              <li><a href="#">Terms</a></li>
-              <li><a href="#">Privacy</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Mission</a></li>
+
+          {/* Account Column */}
+          <div className="col-md-4">
+            <h5 className="fw-bold mb-4">Account</h5>
+            <ul className="list-unstyled">
+              <li className="mb-2">
+                <Link to="/login" style={{ color: '#ccc', textDecoration: 'none' }}>Login</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/cart" style={{ color: '#ccc', textDecoration: 'none' }}>Cart</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/terms" style={{ color: '#ccc', textDecoration: 'none' }}>Terms</Link>
+              </li>
+              <li className="mb-2">
+                <Link to="/privacy" style={{ color: '#ccc', textDecoration: 'none' }}>Privacy</Link>
+              </li>
             </ul>
           </div>
-          <div className="col-lg-4">
-            <h5>Get Updates</h5>
-            <div className="d-flex subscribe">
-              <input type="text" className="form-control" />
-              <button className="btn btn-warning">Subscribe</button>
+
+          {/* Newsletter Column */}
+          <div className="col-md-4">
+            <h5 className="fw-bold mb-4">Newsletter</h5>
+            <p style={{ color: '#ccc', marginBottom: '20px' }}>
+              Subscribe to get special offers and updates
+            </p>
+            <div className="d-flex mb-3">
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Enter your email"
+                style={{ borderRadius: '4px 0 0 4px' }}
+              />
+              <button
+                className="btn"
+                style={{
+                  backgroundColor: 'var(--primary-color)',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '0 4px 4px 0',
+                  padding: '0 20px'
+                }}
+              >
+                Subscribe
+              </button>
             </div>
-            <div className="mt-2">
-              <div className="btn-group me-2 social-icons" role="group" aria-label="First group">
-                <button type="button" className="btn btn-secondary mx-1 d-flex flex-column justify-content-center align-items-center">
-                  <i className="bi bi-facebook"></i>
-                </button>
-                <button type="button" className="btn btn-secondary mx-1 d-flex flex-column justify-content-center align-items-center">
-                  <i className="bi bi-instagram"></i>
-                </button>                       
-                <button type="button" className="btn btn-secondary mx-1 d-flex flex-column justify-content-center align-items-center">
-                  <i className="bi bi-twitter"></i>
-                </button>                       
-                <button type="button" className="btn btn-secondary mx-1 d-flex flex-column justify-content-center align-items-center">
-                  <i className="bi bi-linkedin"></i>
-                </button>                   
-              </div>
+
+            {/* Social Icons */}
+            <div className="d-flex gap-2 mt-4">
+              <a href="#" style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                backgroundColor: '#444',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                textDecoration: 'none'
+              }}>
+                <i className="bi bi-facebook"></i>
+              </a>
+              <a href="#" style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                backgroundColor: '#444',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                textDecoration: 'none'
+              }}>
+                <i className="bi bi-twitter"></i>
+              </a>
+              <a href="#" style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                backgroundColor: '#444',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                textDecoration: 'none'
+              }}>
+                <i className="bi bi-instagram"></i>
+              </a>
+              <a href="#" style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                backgroundColor: '#444',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                textDecoration: 'none'
+              }}>
+                <i className="bi bi-linkedin"></i>
+              </a>
             </div>
           </div>
         </div>
-        <div className="row text-center">
-          <span>@coderdost</span>
+
+        {/* Copyright */}
+        <div className="text-center mt-5 pt-4" style={{ borderTop: '1px solid #444' }}>
+          <p style={{ color: '#999', margin: 0 }}>
+            © 2024 Softcart Tech Solutions. All rights reserved.
+          </p>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
 

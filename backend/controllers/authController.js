@@ -77,4 +77,53 @@ const getUserProfile = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { authUser, registerUser, getUserProfile };
+// @desc    Social Login (Google/Phone)
+// @route   POST /api/auth/social-login
+// @access  Public
+const socialLogin = asyncHandler(async (req, res) => {
+    const { email, name, googleId, avatar, phone, uid } = req.body;
+
+    let user;
+
+    if (email) {
+        // Google Login
+        user = await User.findOne({ email });
+    } else if (phone) {
+        // Phone Login
+        user = await User.findOne({ phone });
+    }
+
+    if (user) {
+        res.json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            token: generateToken(user._id),
+        });
+    } else {
+        // Create new user
+        const newUser = await User.create({
+            name: name || (phone ? `User ${phone.slice(-4)}` : 'User'),
+            email: email || (phone ? `${phone}@mobile.com` : `user${uid}@example.com`), // Placeholder email for phone users
+            password: googleId || uid, // Use UID as password for social login
+            phone: phone || '',
+            isAdmin: false,
+        });
+
+        if (newUser) {
+            res.status(201).json({
+                _id: newUser._id,
+                name: newUser.name,
+                email: newUser.email,
+                isAdmin: newUser.isAdmin,
+                token: generateToken(newUser._id),
+            });
+        } else {
+            res.status(400);
+            throw new Error('Invalid user data');
+        }
+    }
+});
+
+module.exports = { authUser, registerUser, getUserProfile, socialLogin };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Cart = ({ items, order, onQuantityChange }) => {
+const Cart = ({ items, order, onQuantityChange, onRemoveItem }) => {
   // Calculate subtotal, discount, and final total
   const subtotal = items.reduce((total, item) => total + item.price * (item.quantity || 1), 0);
   const discount = (subtotal * order.discount_in_percent) / 100;
@@ -9,6 +9,12 @@ const Cart = ({ items, order, onQuantityChange }) => {
   const handleQuantityChange = (e, item) => {
     const newQuantity = parseInt(e.target.value, 10);
     onQuantityChange(newQuantity, item); // Pass the new quantity and item to the parent handler
+  };
+
+  const handleRemove = (itemId) => {
+    if (window.confirm('Are you sure you want to remove this item from cart?')) {
+      onRemoveItem(itemId);
+    }
   };
 
   return (
@@ -46,11 +52,11 @@ const Cart = ({ items, order, onQuantityChange }) => {
                     </select>
                   </div>
                   <div
-                    data-bs-toggle="modal"
-                    data-bs-target="#removeItemModal"
+                    onClick={() => handleRemove(item.id)}
                     className="col-2 d-flex justify-content-end align-items-start close"
+                    style={{ cursor: 'pointer' }}
                   >
-                    <i className="bi bi-x-circle"></i>
+                    <i className="bi bi-x-circle" style={{ fontSize: '1.5rem', color: '#dc3545' }}></i>
                   </div>
                 </div>
               </div>
