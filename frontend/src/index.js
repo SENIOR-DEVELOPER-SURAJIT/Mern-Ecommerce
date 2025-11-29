@@ -2,10 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { productReducer, cartReducer, orderReducer } from './Reducer';
-import authReducer from './Reducer/authSlice';
+import store from './Reducer';
 import Home from './pages/Home';
 import CartPages from './pages/cartPages';
 import Login from './pages/Login';
@@ -14,16 +12,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
-} from "react-router-dom"; // Corrected import
-
-const store = configureStore({
-  reducer: {
-    products: productReducer,
-    cart: cartReducer,
-    order: orderReducer,
-    auth: authReducer,
-  },
-});
+} from "react-router-dom";
 
 // Create the root React DOM
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Cart from '../components/cart';
 import Footer from '../components/Footer';
 
-import { CHANGE_ORDER_CART, CHANGE_QUANTITY } from '../actions/index';
+import { updateQuantity } from '../Reducer/index';
 
 function CartPages() {
   const dispatch = useDispatch();
@@ -13,12 +13,8 @@ function CartPages() {
   const cartItems = useSelector((state) => state.cart.items);
   const order = useSelector((state) => state.order);
 
-  useEffect(() => {
-    dispatch({ type: CHANGE_ORDER_CART, payload: cartItems });
-  }, [cartItems, dispatch]);
-
   const changeQuantity = (quantity, item) => {
-    dispatch({ type: CHANGE_QUANTITY, payload: { ...item, quantity } });
+    dispatch(updateQuantity({ id: item.id, quantity }));
   };
 
   return (

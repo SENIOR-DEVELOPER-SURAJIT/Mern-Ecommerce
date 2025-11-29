@@ -1,5 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, configureStore } from '@reduxjs/toolkit';
 import axios from 'axios';
+import authReducer from './authSlice';
 
 // Async thunk to fetch products
 export const fetchProducts = createAsyncThunk(
@@ -49,14 +50,21 @@ const cartSlice = createSlice({
       // Check for duplicates
       const existingItem = state.items.find((item) => item.id === newItem.id);
       if (existingItem) {
-        existingItem.quantity = (existingItem.quantity || 1) + (newItem.quantity || 1);
+        existingItem.quantity = (existingItem.quantity || 1) + 1;
       } else {
-        state.items.push({ ...newItem, quantity: newItem.quantity || 1 });
+        state.items.push({ ...newItem, quantity: 1 });
       }
     },
     removeItemFromCart(state, action) {
       const itemId = action.payload;
       state.items = state.items.filter((item) => item.id !== itemId);
+    },
+    updateQuantity(state, action) {
+      const { id, quantity } = action.payload;
+      const item = state.items.find((item) => item.id === id);
+      if (item) {
+        item.quantity = quantity;
+      }
     },
   },
 });
@@ -86,11 +94,16 @@ const orderSlice = createSlice({
   },
 });
 
-// Exporting reducers
-export const productReducer = productSlice.reducer;
-export const cartReducer = cartSlice.reducer;
-export const orderReducer = orderSlice.reducer;
-
-// Exporting actions
-export const { addItemToCart, removeItemFromCart } = cartSlice.actions;
+// Export actions
+export const { addItemToCart, removeItemFromCart, updateQuantity } = cartSlice.actions;
 export const { setOrderCart, setShippingAddress, calculateOrderTotal } = orderSlice.actions;
+
+// Export the store
+export default configureStore({
+  reducer: {
+    products: productSlice.reducer,
+    cart: cartSlice.reducer,
+    order: orderSlice.reducer,
+    auth: authReducer,
+  },
+});

@@ -1,25 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ProductList from '../components/Product-list';
 import Nav from '../components/Navbar';
 import { useSelector, useDispatch } from 'react-redux';
 import Crousal from '../components/Crousal';
 import Footer from '../components/Footer';
-import { fetchProducts } from '../Reducer/index';
+import { fetchProducts, addItemToCart } from '../Reducer/index';
 import { motion } from 'framer-motion';
 
 function Home() {
   const dispatch = useDispatch();
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  const products = useSelector((state) => state.products);
+  const allProducts = useSelector((state) => state.products);
   const cartItems = useSelector((state) => state.cart.items);
 
+  // Filter products based on selected category
+  const products = selectedCategory === 'All'
+    ? allProducts
+    : allProducts.filter(product => product.category === selectedCategory);
+
   const handleAddToCart = (product) => {
-    // Logic handled in ProductList or Redux
+    dispatch(addItemToCart(product));
   };
+
+  const categories = [
+    { name: 'All', icon: '🛍️' },
+    { name: 'Mobile', icon: '📱' },
+    { name: 'Fashion', icon: '👕' },
+    { name: 'Electronics', icon: '💻' },
+    { name: 'Home', icon: '🏠' }
+  ];
 
   return (
     <div className="bg-light min-vh-100">
@@ -28,18 +42,22 @@ function Home() {
 
       {/* Featured Categories */}
       <div className="container my-5">
-        <h3 className="fw-bold mb-4 text-center">Featured Categories</h3>
+        <h3 className="fw-bold mb-4 text-center">Shop by Category</h3>
         <div className="row g-4">
-          {['Mobiles', 'Fashion', 'Electronics', 'Home'].map((cat, index) => (
-            <div className="col-6 col-md-3" key={index}>
+          {categories.map((cat, index) => (
+            <div className="col-6 col-md-2" key={index}>
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="card border-0 shadow-sm text-center p-3 h-100"
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setSelectedCategory(cat.name)}
+                className={`card border-0 shadow-sm text-center p-3 h-100 ${selectedCategory === cat.name ? 'bg-primary text-white' : ''}`}
                 style={{ cursor: 'pointer' }}
               >
                 <div className="card-body">
-                  <h5 className="card-title fw-bold text-primary">{cat}</h5>
-                  <p className="card-text text-muted">Explore Now</p>
+                  <div className="fs-1 mb-2">{cat.icon}</div>
+                  <h6 className={`card-title fw-bold mb-0 ${selectedCategory === cat.name ? 'text-white' : 'text-primary'}`}>
+                    {cat.name}
+                  </h6>
                 </div>
               </motion.div>
             </div>
@@ -48,7 +66,10 @@ function Home() {
       </div>
 
       <div className="container">
-        <h3 className="fw-bold mb-4">Best of Electronics</h3>
+        <h3 className="fw-bold mb-4">
+          {selectedCategory === 'All' ? 'All Products' : selectedCategory}
+          <span className="text-muted fs-6 ms-2">({products.length} items)</span>
+        </h3>
         <ProductList products={products} handleAddToCart={handleAddToCart} />
       </div>
 

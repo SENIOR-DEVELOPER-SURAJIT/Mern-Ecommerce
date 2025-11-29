@@ -14,7 +14,15 @@ const Nav = ({ CartCount }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
       <div className="container-fluid">
-        <Link className="navbar-brand fw-bold text-primary" to="/">Softcart Tech Solutions</Link>
+        <Link className="navbar-brand d-flex align-items-center" to="/">
+          <img
+            src="/softcart-logo.png"
+            alt="Softcart Tech Solutions"
+            height="40"
+            className="me-2"
+          />
+          <span className="fw-bold text-primary">Softcart Tech Solutions</span>
+        </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
