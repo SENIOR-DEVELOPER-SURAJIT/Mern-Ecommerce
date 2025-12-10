@@ -1,0 +1,6 @@
+{
+    "appId": "com.softcart.app",
+    "appName": "Softcart Tech Solutions",
+    "webDir": "build",
+    "bundledWebRuntime": false
+}

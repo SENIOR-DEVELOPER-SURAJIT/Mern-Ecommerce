@@ -19,26 +19,27 @@ const Cart = ({ items, order, onQuantityChange, onRemoveItem }) => {
 
   return (
     <div className="container mb-5">
-      <div className="d-flex flex-row align-items-start">
+      <div className="d-flex flex-column flex-lg-row align-items-start">
         {/* Cart Items */}
-        <div className="col-8 d-flex flex-column m-2">
+        <div className="col-12 col-lg-8 d-flex flex-column mb-3">
           {items.length > 0 ? (
             items.map((item) => (
-              <div className="cart-item p-3" key={item.id}>
-                <div className="d-flex flex-row">
+              <div className="cart-item p-3 mb-3" key={item.id}>
+                <div className="d-flex flex-row align-items-center">
                   <img
-                    className="col-2 img-fluid"
+                    className="col-3 col-md-2 img-fluid"
                     src={`images/${item.image}.jpg`}
                     alt={item.name}
+                    style={{ objectFit: 'contain' }}
                   />
-                  <div className="col-6 p-2">
-                    <h5>{item.name}</h5>
-                    <h6>{item.category}</h6>
-                    <p>${item.price.toFixed(2)}</p>
+                  <div className="col-5 col-md-6 p-2">
+                    <h5 style={{ fontSize: '1rem' }}>{item.name}</h5>
+                    <h6 className="text-muted" style={{ fontSize: '0.85rem' }}>{item.category}</h6>
+                    <p className="mb-0 fw-bold">${item.price.toFixed(2)}</p>
                   </div>
-                  <div className="col-2 p-2">
-                    Quantity
+                  <div className="col-3 col-md-2 p-2">
                     <select
+                      className="form-select form-select-sm"
                       name="quantity"
                       id={`quantity-${item.id}`}
                       value={item.quantity || 1}
@@ -53,25 +54,28 @@ const Cart = ({ items, order, onQuantityChange, onRemoveItem }) => {
                   </div>
                   <div
                     onClick={() => handleRemove(item.id)}
-                    className="col-2 d-flex justify-content-end align-items-start close"
+                    className="col-1 col-md-2 d-flex justify-content-end align-items-center close"
                     style={{ cursor: 'pointer' }}
                   >
-                    <i className="bi bi-x-circle" style={{ fontSize: '1.5rem', color: '#dc3545' }}></i>
+                    <i className="bi bi-x-circle text-danger" style={{ fontSize: '1.2rem' }}></i>
                   </div>
                 </div>
               </div>
             ))
           ) : (
-            <p>Your cart is empty.</p>
+            <div className="text-center py-5">
+              <p className="fs-5 text-muted">Your cart is empty.</p>
+              <a href="/" className="btn btn-primary">Start Shopping</a>
+            </div>
           )}
         </div>
 
         {/* Order Summary */}
-        <div className="col-4 order p-3 m-2">
+        <div className="col-12 col-lg-4 order p-3">
           <h4>Order Total</h4>
           <div className="d-flex flex-row py-2">
             <input type="text" className="form-control" placeholder="Promo code" />
-            <button className="btn btn-primary">Apply</button>
+            <button className="btn btn-primary ms-2">Apply</button>
           </div>
           <div className="d-flex flex-row justify-content-between p-2">
             <span className="billing-item">Subtotal</span>
@@ -85,15 +89,16 @@ const Cart = ({ items, order, onQuantityChange, onRemoveItem }) => {
             <span className="billing-item">Discount ({order.discount_in_percent}%)</span>
             <span className="billing-cost">-${discount.toFixed(2)}</span>
           </div>
+          <hr />
           <div className="d-flex flex-row justify-content-between p-2">
-            <span className="billing-item fs-5">Total</span>
-            <span className="billing-cost fs-5">${totalCost}</span>
+            <span className="billing-item fs-5 fw-bold">Total</span>
+            <span className="billing-cost fs-5 fw-bold">${totalCost}</span>
           </div>
 
           <div className="d-flex mt-3">
-            <a href="/checkout.html" className="btn btn-primary flex-grow-1">
-              Pay Now
-            </a>
+            <button className="btn btn-primary w-100 py-2" onClick={() => window.location.href = '/checkout'}>
+              Proceed to Checkout
+            </button>
           </div>
         </div>
       </div>

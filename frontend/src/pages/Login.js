@@ -117,16 +117,9 @@ const Login = () => {
     };
 
     return (
-        <div style={{ display: 'flex', minHeight: '100vh' }}>
+        <div className="auth-container">
             {/* Left Side - Form */}
-            <div style={{
-                flex: 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '40px',
-                backgroundColor: 'white'
-            }}>
+            <div className="auth-form-side">
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -311,16 +304,8 @@ const Login = () => {
             </div>
 
             {/* Right Side - Image */}
-            <div style={{
-                flex: 1,
-                backgroundImage: `url(${require('../assets/login_bg_custom.jpg')})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '40px',
-                position: 'relative'
+            <div className="auth-image-side" style={{
+                backgroundImage: `url(${require('../assets/login_bg_custom.jpg')})`
             }}>
                 <div style={{
                     position: 'absolute',

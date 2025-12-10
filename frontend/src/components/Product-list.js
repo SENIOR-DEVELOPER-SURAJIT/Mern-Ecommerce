@@ -21,10 +21,10 @@ const Productlist = ({ products = [], showToast, handleAddToCart }) => {
       <div id="products" className="row g-4">
         {products.length > 0 ? (
           products.map((product) => (
-            <div className="col-xl-3 col-lg-4 col-md-6" key={product.id}>
+            <div className="col-xl-3 col-lg-4 col-6" key={product.id}>
               <motion.div
                 whileHover={{ y: -8, boxShadow: 'var(--shadow-md)' }}
-                className="card h-100 border"
+                className="card h-100 border product-card"
                 style={{
                   borderRadius: 'var(--radius-sm)',
                   borderColor: 'var(--border-color)',
@@ -35,12 +35,11 @@ const Productlist = ({ products = [], showToast, handleAddToCart }) => {
                   <img
                     src={`images/${product.image}.jpg`}
                     onClick={() => goToProductDetails(product.id)}
-                    className="card-img-top p-3"
+                    className="card-img-top p-3 product-card-img"
                     alt={product.name}
                     style={{
                       cursor: 'pointer',
                       objectFit: 'contain',
-                      height: '220px',
                       transition: 'transform 0.3s ease'
                     }}
                     onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
